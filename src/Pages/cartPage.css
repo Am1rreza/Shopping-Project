@@ -1,0 +1,80 @@
+.cartItemList {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex: 1;
+  box-shadow: 4px 3px 7px 0px rgba(0, 0, 0, 0.1);
+}
+.cartSummery {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 30%;
+  margin-left: 2.5rem;
+  padding: 1rem;
+  box-shadow: 4px 3px 7px 0px rgba(0, 0, 0, 0.1);
+}
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+.cartItem .itemImg {
+  width: 100px;
+  height: 100px;
+}
+.cartItem .itemImg img {
+  width: 100%;
+  height: auto;
+}
+.cartCenter {
+  display: flex;
+  width: 90vw;
+  max-width: 1170px;
+  justify-content: center;
+  margin-top: 50px;
+}
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.net {
+  border-top: 1px solid #ccc;
+  padding: 3px;
+}
+.buttonGroup button {
+  outline: none;
+  color: #6d28d9;
+  border: 1.5px solid #6d28d9;
+  padding: 5px 10px;
+  background-color: #fff;
+}
+.buttonGroup button:first-child {
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+}
+.buttonGroup button:last-child {
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+}
+.buttonGroup button:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
+}
+.cartSummery .btn {
+  transition: all ease 0.25s;
+  margin-top: 20px;
+  width: 100%;
+}
+.cartSummery .btn:hover {
+  background-color: #914dff;
+}

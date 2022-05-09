@@ -1,0 +1,62 @@
+header {
+  width: 100%;
+  height: 4.5rem;
+  background-color: #ede9fe;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1170px;
+}
+header ul {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+header li {
+  margin-right: 1rem;
+}
+header a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #333;
+  transition: 0.2s;
+  position: relative;
+}
+header a:hover,
+.activeLink {
+  color: #6d28d9;
+  background-color: #fff;
+}
+header span {
+  display: flex;
+  position: absolute;
+  top: -8%;
+  right: -8%;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fd4040;
+  color: #f4f4f4;
+  font-size: 14px;
+}
+header h3 {
+  width: 8rem;
+}
+@media only screen and (max-width: 1170px) {
+  header nav {
+    margin: 0 2rem;
+  }
+}
