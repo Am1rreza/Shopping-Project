@@ -78,3 +78,39 @@
 .cartSummery .btn:hover {
   background-color: #914dff;
 }
+@media only screen and (max-width: 690px) {
+  .cartCenter {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .cartSummery {
+    margin: 1rem 0;
+    width: 20rem;
+  }
+  .cartItem {
+    width: 30rem;
+  }
+}
+@media only screen and (max-width: 525px) {
+  .cartSummery {
+    width: 15rem;
+  }
+  .cartItem {
+    width: 25rem;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .cartItem {
+    flex-direction: column;
+    width: 20rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cartItem div {
+    margin-bottom: 10px;
+  }
+  .cartSummery {
+    margin: 1rem 0;
+  }
+}

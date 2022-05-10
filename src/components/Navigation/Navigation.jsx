@@ -10,6 +10,9 @@ const Navigation = () => {
   return (
     <header>
       <nav>
+        <div>
+          <h3>Online Shop</h3>
+        </div>
         <ul>
           <li>
             <NavLink
@@ -43,7 +46,6 @@ const Navigation = () => {
             </NavLink>
           </li>
         </ul>
-        <h3>Online Shop</h3>
       </nav>
     </header>
   );

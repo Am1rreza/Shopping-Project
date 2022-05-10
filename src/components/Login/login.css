@@ -1,3 +1,4 @@
-li{
-    list-style-type: none;
+.formContainer {
+    max-width: 1170px;
 }
+
