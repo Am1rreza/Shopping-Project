@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+:root {
+  --primaryColor: #6d28d9;
+  --secondaryColor: #ede9fe;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGrey: #7c7c7c;
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+  --mainRed: #db2777;
+  --bodyColor: #f6f6f6;
+}
+
+body {
+  color: var(--mainBlack);
+  font-family: "Lato", sans-serif;
+  background-color: var(--bodyColor);
+  position: relative;
+}
