@@ -5,7 +5,7 @@ const backDrop = document.querySelector(".backdrop");
 const closeModal = document.querySelector(".cart-item-confirm");
 const productsDOM = document.querySelector(".products-center");
 
-const cart = [];
+let cart = [];
 
 // get products
 class Products {
@@ -55,9 +55,15 @@ class UI {
       }
       // add event listener to btn
       btn.addEventListener("click", (e) => {
+        e.target.innerText = "In Cart";
+        e.target.disabled = true;
+
         // get product from products
+        const addedProduct = Storage.getProducts(id);
         // add product to cart
+        cart = [...cart, { ...addedProduct, quantity: 1 }];
         // save cart to local storage
+        Storage.saveCart(cart);
       });
     });
   }
@@ -67,6 +73,13 @@ class UI {
 class Storage {
   static saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
+  }
+  static getProducts(id) {
+    const _products = JSON.parse(localStorage.getItem("products"));
+    return _products.find((p) => p.id === parseInt(id));
+  }
+  static saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 }
 
