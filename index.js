@@ -146,6 +146,24 @@ class UI {
         Storage.saveCart(cart);
         // remove item from DOM
         cartContent.removeChild(e.target.parentElement);
+      } else if (e.target.classList.contains("fa-chevron-down")) {
+        const subQuantity = e.target;
+        // get item from cart
+        const substractedItem = cart.find(
+          (c) => c.id == subQuantity.dataset.id
+        );
+        if (substractedItem.quantity === 1) {
+          this.removeItem(substractedItem.id);
+          cartContent.removeChild(subQuantity.parentElement.parentElement);
+          return;
+        }
+        substractedItem.quantity--;
+        // save cart
+        Storage.saveCart(cart);
+        // update cart value
+        this.setCartValue(cart);
+        // update cart item in UI
+        subQuantity.previousElementSibling.innerText = substractedItem.quantity;
       }
     });
   }
