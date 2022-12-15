@@ -7,6 +7,7 @@ const productsDOM = document.querySelector(".products-center");
 const cartTotal = document.querySelector(".cart-total");
 const cartItems = document.querySelector(".cart-items");
 const cartContent = document.querySelector(".cart-content");
+const clearCart = document.querySelector(".cart-item-clear");
 
 let cart = [];
 
@@ -21,6 +22,7 @@ class Products {
 // display products
 class UI {
   cart = JSON.parse(localStorage.getItem("cart")) || [];
+
   displayProducts(products) {
     let result = "";
     products.forEach((item) => {
@@ -101,18 +103,35 @@ class UI {
       <p>${cartItem.quantity}</p>
       <i class="fas fa-chevron-down"></i>
       </div>
-      <i class="fas fa-trash-alt"></i>
+      <i class="fas fa-trash-alt" data-id=${cartItem.id}></i>
     `;
     cartContent.appendChild(div);
   }
 
   setupApp() {
     // get cart from storage
-    cart = Storage.getCart() || [];
+    cart = Storage.getCart();
     // add cart item
     cart.forEach((item) => this.addCartItem(item));
     // set value : total price and cart items
     this.setCartValue(cart);
+  }
+
+  cartLogic() {
+    // clear cart
+    clearCart.addEventListener("click", () => {
+      //remove
+      cart.forEach((cartItem) => this.removeItem(cartItem.id));
+    });
+  }
+
+  removeItem(id) {
+    // update cart
+    cart = cart.filter((cartItem) => cartItem.id !== id);
+    // update total price and cart items
+    this.setCartValue(cart);
+    // update storage
+    Storage.saveCart(cart);
   }
 }
 
@@ -129,8 +148,9 @@ class Storage {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
   static getCart() {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    return cart;
+    return JSON.parse(localStorage.getItem("cart"))
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
   }
 }
 
@@ -144,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   ui.displayProducts(productsData);
   ui.getAddToCartBtns();
+  ui.cartLogic();
   // get cart and setup app
   ui.setupApp();
 
