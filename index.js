@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function showModalFunction() {
   backDrop.style.display = "block";
   cartModal.style.opacity = "1";
-  cartModal.style.top = "25%";
+  cartModal.style.top = "10%";
 }
 
 function closeModalFunction() {

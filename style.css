@@ -174,7 +174,7 @@ body {
   border-radius: 5px;
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  position: fixed;
+  position: absolute;
   top: -100%;
   left: 50%;
   transform: translateY(-50%);
