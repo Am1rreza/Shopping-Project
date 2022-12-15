@@ -137,6 +137,15 @@ class UI {
         this.setCartValue(cart);
         // update cart item in UI
         addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      } else if (e.target.classList.contains("fa-trash-alt")) {
+        // find item from cart
+        const removedItem = cart.find((c) => c.id == e.target.dataset.id);
+        // call removeItem function
+        this.removeItem(removedItem.id);
+        // update storage
+        Storage.saveCart(cart);
+        // remove item from DOM
+        cartContent.removeChild(e.target.parentElement);
       }
     });
   }
