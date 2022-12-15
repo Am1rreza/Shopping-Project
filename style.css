@@ -163,6 +163,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.5rem 0;
   z-index: 10;
   width: 30rem;
   padding: 1rem;
@@ -244,4 +245,13 @@ body {
   height: 36px;
   margin-right: 1rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem 0;
 }
