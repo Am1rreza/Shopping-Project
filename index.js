@@ -20,6 +20,7 @@ class Products {
 
 // display products
 class UI {
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
   displayProducts(products) {
     let result = "";
     products.forEach((item) => {
@@ -51,12 +52,12 @@ class UI {
     buttons.forEach((btn) => {
       const id = btn.dataset.id;
       // check if this product id is in cart or not
-      const isInCart = cart.find((p) => p.id === id);
+      const isInCart = this.cart.find((item) => item.id === parseInt(id));
       if (isInCart) {
         btn.innerText = "In Cart";
         btn.disabled = true;
       }
-      // add event listener to btn
+      // add an event listener to btn
       btn.addEventListener("click", (e) => {
         e.target.innerText = "In Cart";
         e.target.disabled = true;
@@ -128,7 +129,8 @@ class Storage {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
   static getCart() {
-    return JSON.parse(localStorage.getItem("cart"));
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    return cart;
   }
 }
 
