@@ -10,6 +10,7 @@ const cartContent = document.querySelector(".cart-content");
 const clearCart = document.querySelector(".cart-item-clear");
 
 let cart = [];
+let buttonsDOM = [];
 
 // get products
 class Products {
@@ -40,7 +41,7 @@ class UI {
           </div>
           <button class="add-to-cart btn" data-id=${item.id}>
           <i class="fas fa-shopping-cart"></i>
-          Add to cart
+          Add To Cart
           </button>
           </section>`;
       productsDOM.innerHTML = result;
@@ -49,6 +50,7 @@ class UI {
 
   getAddToCartBtns() {
     const addToCartBtn = document.querySelectorAll(".add-to-cart");
+    buttonsDOM = [...addToCartBtn];
     const buttons = [...addToCartBtn];
 
     buttons.forEach((btn) => {
@@ -99,9 +101,9 @@ class UI {
       <h5>${cartItem.price}$</h5>
     </div>
     <div class="cart-item-conteoller">
-      <i class="fas fa-chevron-up"></i>
+      <i class="fas fa-chevron-up" data-id=${cartItem.id}></i>
       <p>${cartItem.quantity}</p>
-      <i class="fas fa-chevron-down"></i>
+      <i class="fas fa-chevron-down" data-id=${cartItem.id}></i>
       </div>
       <i class="fas fa-trash-alt" data-id=${cartItem.id}></i>
     `;
@@ -119,10 +121,18 @@ class UI {
 
   cartLogic() {
     // clear cart
-    clearCart.addEventListener("click", () => {
-      //remove
-      cart.forEach((cartItem) => this.removeItem(cartItem.id));
-    });
+    clearCart.addEventListener("click", () => this.clearCart());
+  }
+
+  clearCart() {
+    //remove
+    cart.forEach((cartItem) => this.removeItem(cartItem.id));
+    // remove cart content children
+    while (cartContent.children.length) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+    // close modal
+    closeModalFunction();
   }
 
   removeItem(id) {
@@ -132,6 +142,11 @@ class UI {
     this.setCartValue(cart);
     // update storage
     Storage.saveCart(cart);
+    // get "add to cart" buttons => update their text and disable
+    const button = buttonsDOM.find((btn) => parseInt(btn.dataset.id) === id);
+    button.innerHTML = `<i class="fas fa-shopping-cart"></i>
+    Add To Cart`;
+    button.disabled = false;
   }
 }
 
