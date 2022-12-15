@@ -228,9 +228,20 @@ body {
 
 .cart-footer {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-footer span {
   display: inline-block;
   margin-right: 1rem;
+}
+
+.cart-item-clear {
+  background-color: var(--mainWhite);
+  border: 1.7px solid var(--primaryColor);
+  height: 36px;
+  margin-right: 1rem;
+  text-align: center;
 }
