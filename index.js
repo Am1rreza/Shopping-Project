@@ -122,6 +122,23 @@ class UI {
   cartLogic() {
     // clear cart
     clearCart.addEventListener("click", () => this.clearCart());
+    // cart functionality
+    cartContent.addEventListener("click", (e) => {
+      if (e.target.classList.contains("fa-chevron-up")) {
+        const addQuantity = e.target;
+        // get item from cart
+        const addedItem = cart.find(
+          (cartItem) => cartItem.id == addQuantity.dataset.id
+        );
+        addedItem.quantity++;
+        // save cart
+        Storage.saveCart(cart);
+        // update cart value
+        this.setCartValue(cart);
+        // update cart item in UI
+        addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      }
+    });
   }
 
   clearCart() {
