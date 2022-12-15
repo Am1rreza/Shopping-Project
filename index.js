@@ -104,6 +104,15 @@ class UI {
     `;
     cartContent.appendChild(div);
   }
+
+  setupApp() {
+    // get cart from storage
+    cart = Storage.getCart() || [];
+    // add cart item
+    cart.forEach((item) => this.addCartItem(item));
+    // set value : total price and cart items
+    this.setCartValue(cart);
+  }
 }
 
 // storage
@@ -118,6 +127,9 @@ class Storage {
   static saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
+  static getCart() {
+    return JSON.parse(localStorage.getItem("cart"));
+  }
 }
 
 // add an event listeners to DOM
@@ -130,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   ui.displayProducts(productsData);
   ui.getAddToCartBtns();
+  // get cart and setup app
+  ui.setupApp();
 
   // save products
   Storage.saveProducts(productsData);
