@@ -6,6 +6,7 @@ const closeModal = document.querySelector(".cart-item-confirm");
 const productsDOM = document.querySelector(".products-center");
 const cartTotal = document.querySelector(".cart-total");
 const cartItems = document.querySelector(".cart-items");
+const cartContent = document.querySelector(".cart-content");
 
 let cart = [];
 
@@ -61,13 +62,15 @@ class UI {
         e.target.disabled = true;
 
         // get product from products
-        const addedProduct = Storage.getProducts(id);
+        const addedProduct = { ...Storage.getProducts(id), quantity: 1 };
         // add product to cart
-        cart = [...cart, { ...addedProduct, quantity: 1 }];
+        cart = [...cart, addedProduct];
         // save cart to local storage
         Storage.saveCart(cart);
         // update cart value
         this.setCartValue(cart);
+        // add to cart item
+        this.addCartItem(addedProduct);
       });
     });
   }
@@ -82,6 +85,24 @@ class UI {
 
     cartTotal.innerText = `Total Price : ${totalPrice}$`;
     cartItems.innerText = tempCartItem;
+  }
+
+  addCartItem(cartItem) {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `<img class="cart-item-img" src="${cartItem.imageUrl}" />
+    <div class="cart-item-desc">
+      <h4>${cartItem.title}</h4>
+      <h5>${cartItem.price}$</h5>
+    </div>
+    <div class="cart-item-conteoller">
+      <i class="fas fa-chevron-up"></i>
+      <p>${cartItem.quantity}</p>
+      <i class="fas fa-chevron-down"></i>
+      </div>
+      <i class="fas fa-trash-alt"></i>
+    `;
+    cartContent.appendChild(div);
   }
 }
 
@@ -118,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function showModalFunction() {
   backDrop.style.display = "block";
   cartModal.style.opacity = "1";
-  cartModal.style.top = "35%";
+  cartModal.style.top = "25%";
 }
 
 function closeModalFunction() {
